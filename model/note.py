@@ -1,16 +1,17 @@
 import datetime
 import itertools
+from abc import ABC
 
 
-class Note(object):
+class Note(ABC):
     __id_iter = itertools.count(1)
     __id: int
     __data: datetime
     __title: str
     __text: str
 
-    def __init__(self, date, title, text):
-        self.__id = next(Note.__id_iter)
+    def __init__(self, title, text, note_id=0, date=datetime.datetime.now()):
+        self.__id = next(Note.__id_iter) if note_id == 0 else note_id
         self.__date = date
         self.__title = title
         self.__text = text
@@ -44,4 +45,4 @@ class Note(object):
         self.__text = text
 
     def __str__(self) -> str:
-        return '№' + str(self.id) + ' << ' + self.title + ' >> ' + self.date + '\n' + self.text
+        return '№ ' + str(self.id) + ' << ' + self.title + ' >> ' + self.date + '\n' + self.text
