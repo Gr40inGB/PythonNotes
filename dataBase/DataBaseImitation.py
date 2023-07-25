@@ -1,3 +1,4 @@
+import datetime
 import json
 import os.path
 
@@ -17,7 +18,11 @@ class jsonData():
                     data = json.loads(file.read())
                     data.sort(key=lambda x: x['date'])
                 for item in data:
-                    all_notes.append(Note(item['title'], item['text'], item['id'], item['date']))
+                    all_notes.append(
+                        Note(item['title'],
+                             item['text'],
+                             item['id'],
+                             datetime.datetime.strptime(item['date'], '%d.%m.%Y %H:%M')))
                 return all_notes
             except ValueError:
                 print('Error')

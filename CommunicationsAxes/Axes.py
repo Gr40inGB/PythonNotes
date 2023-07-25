@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 # CRUD
 class Axes(ABC):
     @abstractmethod
-    def create(self):
+    def create(self, title: str, text: str):
         pass
 
     @abstractmethod
