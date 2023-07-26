@@ -1,4 +1,6 @@
-from dataBase.DataBaseImitation import jsonData
+from CommunicationsAxes.view.console_view import ConsoleView
+from controller.controller import Controller
+from dataBase.DataBaseImitation import JsonData
 from model.NoteBook import Notebook
 
 
@@ -12,7 +14,9 @@ def start():
     #
     # # print(n.date)
     # notess = [n, n2, n3]
-    db = jsonData('base.json')
+    db = JsonData('base.json')
+    app_controller = Controller(db, db.read_all(), ConsoleView())
+
     #
     current_notes = db.read_all()
     # for note in current_notes:

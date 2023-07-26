@@ -5,7 +5,7 @@ import os.path
 from model.note import Note
 
 
-class jsonData():
+class JsonData:
     def __init__(self, filename):
 
         self.filename = filename
