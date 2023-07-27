@@ -2,47 +2,44 @@ from abc import ABC, abstractmethod
 
 
 class View(ABC):
-    def __init__(self):
-        self.working = True
-
-    @staticmethod
-    @abstractmethod
-    def start(self):
-        pass
-
-    @staticmethod
-    @abstractmethod
-    def stop(self):
-        self.working = False
-
     @staticmethod
     @abstractmethod
     def show_info(self, info: str):
         pass
 
+    @staticmethod
+    @abstractmethod
+    def input_num(message: str, max_value: int) -> int:
+        pass
 
-def input_num(message: str) -> int:
-    input_error: bool = True
-    while input_error:
-        try:
-            temp = int(input(message))
-        except ValueError:
-            print("Вы ввели не число!")
-        else:
-            input_error = False
-            return temp
+    @staticmethod
+    @abstractmethod
+    def input_str(message: str) -> str:
+        pass
 
 
 class ConsoleView(View):
     @staticmethod
-    def stop(self):
-        self.working = False
+    def show_info(self, info: str):
+        print(info)
 
     @staticmethod
-    def start(self):
-        while self.working:
-            self.run_command(self.show_menu())
+    def input_str(message: str) -> str:
+        return input(message)
 
     @staticmethod
-    def show_info(self, **kwargs):
-        pass
+    def input_num(message: str, max_value: int) -> int:
+        input_error: bool = True
+        temp = -1
+        while input_error:
+            try:
+                temp = int(input(message))
+            except ValueError:
+                print("You didn't enter a number!")
+            else:
+                if temp > max_value:
+                    print("Number must be between 1 and " + str(max_value))
+                else:
+                    input_error = False
+
+        return temp

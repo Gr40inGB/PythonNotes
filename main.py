@@ -15,18 +15,24 @@ def start():
     # # print(n.date)
     # notess = [n, n2, n3]
     db = JsonData('base.json')
-    app_controller = Controller(db, db.read_all(), ConsoleView())
+    app_controller = Controller(db, Notebook(db.read_all()), ConsoleView())
+    # app_controller.create()
+    app_controller.start()
+
+    # for n in app_controller.book.notes:
+    #     print(n)
+    # app_controller.save_new_data()
 
     #
-    current_notes = db.read_all()
-    # for note in current_notes:
+    # current_notes = db.read_all()
+    # # for note in current_notes:
+    # #     print(note)
+    #
+    # notebook = Notebook(db.read_all())
+    # notebook.create('new in ', ' all ok')
+    #
+    # for note in notebook.notes:
     #     print(note)
-
-    notebook = Notebook(db.read_all())
-    notebook.create('new in ', ' all ok')
-
-    for note in notebook.notes:
-        print(note)
 
     # db.write_all(notess)
 
