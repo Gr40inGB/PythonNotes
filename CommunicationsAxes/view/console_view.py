@@ -4,12 +4,17 @@ from abc import ABC, abstractmethod
 class View(ABC):
     @staticmethod
     @abstractmethod
-    def show_info(self, info: str):
+    def show_info(info: str):
         pass
 
     @staticmethod
     @abstractmethod
-    def input_num(message: str, max_value: int) -> int:
+    def input_num_max(message: str, max_value: int) -> int:
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def input_num(message: str) -> int:
         pass
 
     @staticmethod
@@ -20,7 +25,7 @@ class View(ABC):
 
 class ConsoleView(View):
     @staticmethod
-    def show_info(self, info: str):
+    def show_info(info: str):
         print(info)
 
     @staticmethod
@@ -28,7 +33,7 @@ class ConsoleView(View):
         return input(message)
 
     @staticmethod
-    def input_num(message: str, max_value: int) -> int:
+    def input_num_max(message: str, max_value: int) -> int:
         input_error: bool = True
         temp = -1
         while input_error:
@@ -41,5 +46,17 @@ class ConsoleView(View):
                     print("Number must be between 1 and " + str(max_value))
                 else:
                     input_error = False
+        return temp
 
+    @staticmethod
+    def input_num(message: str) -> int:
+        input_error: bool = True
+        temp = -1
+        while input_error:
+            try:
+                temp = int(input(message))
+            except ValueError:
+                print("You didn't enter a number!")
+            else:
+                input_error = False
         return temp

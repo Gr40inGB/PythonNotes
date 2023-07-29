@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+from model.note import Note
+
 
 # CRUD
 class Axes(ABC):
@@ -12,9 +14,9 @@ class Axes(ABC):
         pass
 
     @abstractmethod
-    def edit(self):
+    def edit(self, note: Note, title: str, text: str):
         pass
 
     @abstractmethod
-    def delete(self):
+    def delete(self, note: Note):
         pass
