@@ -11,13 +11,6 @@ def start():
     app_controller = Controller(db, Notebook(db.read_all()), ConsoleView())
 
     app_controller.start()
-    # x = datetime.datetime.now()
-    # time_start = datetime.datetime.strptime(
-    #     input('input day: ') + '.' + input('input month: ') + "." + input('input year: ') + ' 00:00', '%d.%m.%Y %H:%M')
-    # print(x)
-    # print(time_start)
-    # print(x < time_start)
-
 
 if __name__ == '__main__':
     start()
